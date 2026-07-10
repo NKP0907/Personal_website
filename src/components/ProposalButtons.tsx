@@ -37,8 +37,8 @@ export default function ProposalButtons({ onYes }: ProposalButtonsProps) {
   const yesMagX = useSpring(0, { stiffness: 160, damping: 18, mass: 0.12 });
   const yesMagY = useSpring(0, { stiffness: 160, damping: 18, mass: 0.12 });
 
-  // NO position (raw motion values; springs applied separately)
-  const noX = useMotionValue(0);
+  // NO position (starts offset to the right so it's side-by-side with YES initially)
+  const noX = useMotionValue(90);
   const noY = useMotionValue(0);
 
   // Spring stiffness increases each dodge → gets snappier / harder to catch
@@ -49,7 +49,7 @@ export default function ProposalButtons({ onYes }: ProposalButtonsProps) {
 
   // Track last dodge timestamp + current clamped position
   const lastDodge  = useRef(0);
-  const currentPos = useRef({ x: 0, y: 0 });
+  const currentPos = useRef({ x: 90, y: 0 });
 
   // ── Dodge logic ─────────────────────────────────────────────────────────────
   const dodge = useCallback(
